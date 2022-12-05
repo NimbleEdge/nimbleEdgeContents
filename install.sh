@@ -24,7 +24,7 @@ fi
 tar -xzf nimbleshell_latest.tar.gz 
 
 cp -r $currDir/nimbleshell_latest/* $HOME/.nimbleshell/
-rm -rf $currDir/nimbleshell_latest/
+rm -rf $currDir/nimbleshell_latest*
 cat $HOME/.nimbleshell/README.md
 
 export PATH="$HOME/.nimbleshell/:$PATH"
