@@ -8,22 +8,23 @@ currDir=$(pwd)
 
 mkdir $currDir/nimbleshell
 
-which curl 
+which wget 
 
-if [ 0 -ne $? ]
+
+wget https://github.com/NimbleEdge/nimbleEdgeContents/raw/main/nimbleshell_latest.tar.gz  
+
+
+if [ $? -ne 0 ]
 then 
-    echo "curl is a dependency for the installation of NimbleEdge CLI. Please ensure curl is installed in your machine"
+    echo "wget is a dependency to install NimbleEdge CLI. Please ensure you have wget installed."
     exit 1
 fi
-curl https://github.com/NimbleEdge/nimbleEdgeContents/raw/main/nimbleshell_latest.tar.gz  --output nimbleshell_latest.tar.gz 
 
-tar -xvzf nimbleshell_latest.tar.gz -C nimbleshell_latest
 
-cp -r $currDir/nimbleshell_latest $HOME/.nimbleshell/
-rm -rf $currDir/nimbleshell_latest
+tar -xzf nimbleshell_latest.tar.gz 
+
+cp -r $currDir/nimbleshell_latest/* $HOME/.nimbleshell/
+rm -rf $currDir/nimbleshell_latest/
 cat $HOME/.nimbleshell/README.md
 
 export PATH="$HOME/.nimbleshell/:$PATH"
-
-
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/NimbleEdge/nimbleEdgeContents/main/install.sh)"
